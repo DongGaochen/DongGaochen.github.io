@@ -1,125 +1,63 @@
-<!DOCTYPE HTML>
-<html lang="ZH/EN">
-<head>
-  <meta charset="utf-8">
-  
-  <title>Archivo: 2022/1 | Blog of Gaochen</title>
-  <meta name="author" content="Gaochen Dong">
-  
-  <meta name="description" content="Practice Makes Perfect">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+extends layout/layout
 
-  
-  <meta property="og:site_name" content="Blog of Gaochen"/>
+block page-content
+  - var archivesList = list_archives({ show_count: false, type: 'yearly' })
 
-  
-    <meta property="og:image" content=""/>
-  
+  div.archive-main
+    if !is_year()
 
-  <link rel="shortcut icon" href="/favicon.png">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+      h1.page-title All Archives
+        .time-line-bg
+          span.time-line-disc
+      .main-content
+        - var postArray = site.posts.sort('date', 'desc').toArray()
+        each post in postArray
+          - var currentYear;
+          - post.year = date(post.date, 'YYYY');
+          if post.year !== currentYear
+            - currentYear = post.year;
+            h2.time-title
+              a.time-title-link(href=url_for(config.archive_dir + '/' + currentYear))
+                != currentYear
+              .time-line-bg
+                span.time-line-disc
+          h3.article-achive-title
+            span.title-date=date(post.date, 'MM-DD')
+            if post.link
+              a.title-link(href=post.link, target='_blank')
+                !=post.title
+            else
+              - var rulRegex = /(\/index\.html?$)|(\/?$)/;
+              - var path = post.path.replace(rulRegex, '');
+              a.title-link(href=url_for(path), target='_blank')
+                !=post.title
+            .time-line-bg
+              span.time-line-disc
+    else
+      .main-content        
+        each post in page.posts.toArray()
+          - var currentYear;
+          - post.year = date(post.date, 'YYYY');
+          if post.year !== currentYear
+            - currentYear = post.year;
+            h2.time-title
+              != currentYear
+              .time-line-bg
+                span.time-line-disc
+          h3.article-achive-title
+            span.title-date=date(post.date, 'MM-DD')
+            if post.link
+              a.title-link(href=post.link, target='_blank')
+                !=post.title
+            else
+              - var rulRegex = /(\/index\.html?$)|(\/?$)/;
+              - var path = post.path.replace(rulRegex, '');
+              a.title-link(href=url_for(path), target='_blank')
+                !=post.title
+            .time-line-bg
+              span.time-line-disc
 
-  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
-  
+    // include includes/pagination
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Blog of Gaochen</a></h1>
-  <h2><a href="/">PT2PT</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/null">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2022/1</h2>
-
-
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2022-01-20T15:13:37.000Z"><a href="/2022/01/20/My-First-Blog/">2022-01-20</a></time>
-            
-              <h1 class="title"><a href="/2022/01/20/My-First-Blog/">My First Blog</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-  </div>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Buscar">
-    <input type="hidden" name="as_sitesearch" value="DongGaochen.github.io">
-  </form>
-</div>
-
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">Etiquetas</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/The-start-of-everything/">The start of everything</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2022 Gaochen Dong
-  
-</div>
-<div class="clearfix"></div></footer>
-  
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-
-
-<script src="/js/gallery.js"></script>
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-<script>
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-</body>
-</html>
+block page-dom-ready
+  !=js(['/js/libs/jquery.sticky.js', '/js/archive.js'])
