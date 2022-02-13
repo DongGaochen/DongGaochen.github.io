@@ -186,7 +186,7 @@
       <span class="post-meta-item-text">نُشر في</span>
       
 
-      <time title="أُنشأ: 2022-02-13 22:16:15 / عُدل: 22:53:06" itemprop="dateCreated datePublished" datetime="2022-02-13T22:16:15+08:00">2022-02-13</time>
+      <time title="أُنشأ: 2022-02-13 22:16:15 / عُدل: 22:59:07" itemprop="dateCreated datePublished" datetime="2022-02-13T22:16:15+08:00">2022-02-13</time>
     </span>
 
   
@@ -201,7 +201,7 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="题外话：运营博客碰到的一些问题"><a href="#题外话：运营博客碰到的一些问题" class="headerlink" title="题外话：运营博客碰到的一些问题"></a>题外话：运营博客碰到的一些问题</h2><p>我的博客是使用hexo框架搭建的，在写完第一篇博客之后，我打算给自己的博客网站换一个主题（默认主题有点low，以后会慢慢美化自己的博客^v^）。从官网<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a> 下载了一个主题并替换默认的landscape主题之后，我就遇到了一个难以理解的bug: 运行hexo s命令在local server查看博客的主题和文字排版是正常的，但运行hexo d命令发布后，博客没有主题，文字排版也是错乱的。这个问题在年前没有得到很好的解决。</p>
 <p>今天是年后开工的第一个周日（周六还需要上班。。。），终于有空闲来解决一下这个bug。貌似有不少人使用hexo遇到过这个问题，出错的原因也各式各样。我最后是根据大家的解答，不断尝试改好的。本人计算机基础还不够扎实，没有弄清楚自己问题产生的原因。</p>
-<p>这里是知乎中各位热心网友的解答：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319817323%E3%80%82">https://www.zhihu.com/question/319817323。</a></p>
+<p>这里是知乎中各位热心知乎er的解答：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319817323/answer/877770987">https://www.zhihu.com/question/319817323/answer/877770987</a> 。</p>
 <h2 id="未来三个月的更新计划"><a href="#未来三个月的更新计划" class="headerlink" title="未来三个月的更新计划"></a>未来三个月的更新计划</h2><p>作为一个初级嵌入式AI工程师，本人目前遇到的很多问题都发生在模型部署的过程中。<br>    一是通过估计模型参数量和计算量，来预测模型部署在开发板上的性能表现，了解性能瓶颈，确定优化方向。<br>    二是目前很多芯片仅支持部署FCN（全卷积神经网络），对于卷积（和矩阵乘法）之外的操作，往往选择替换成卷积或使用C/C++来实现同样的功能。<br>    三是对模型进行调优时，往往需要深入理解不同算子在模型中的作用来有针对性地修改模型。</p>
 <p>因此，本人计划在未来三个月（2022.2~2022.4）内，对常用的模型算子进行代码复现，并附加自己的一些见解。在提高自我水平的同时，也留下一些工作中可能需要的内容产出。</p>
 <p>本人常用的深度学习框架是Pytorch，之后实现的模型算子力求和Pytorch算子相似。</p>
